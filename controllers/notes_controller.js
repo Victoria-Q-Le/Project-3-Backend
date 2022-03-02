@@ -1,29 +1,29 @@
 const express = require ('express')
-const router = express.Router()
+const notes = express.Router()
 const Notes = require('../models/notes.js')
 
-router.post('/', (req,res) => {
+notes.post('/', (req,res) => {
   Notes.create(req.body, (err,createdNote) => {
     res.json(createdNote)
   })
 })
 
-router.get('/', (req,res) => {
+notes.get('/', (req,res) => {
   Notes.find({}, (err, foundNotes) => {
     res.json(foundNotes)
   })
 })
 
-router.delete('/:id', (req,res) => {
+notes.delete('/:id', (req,res) => {
   Notes.findByIdAndRemove(req.params.id, (err,deletedNote) => {
     res.json(deletedNote)
   })
 })
 
-router.put('/:id', (req,res) => {
+notes.put('/:id', (req,res) => {
   Notes.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedNote) => {
     res.json(updatedNote)
   })
 })
 
-module.exports = router
+module.exports = notes
