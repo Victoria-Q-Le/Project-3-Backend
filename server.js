@@ -41,9 +41,10 @@ app.use(express.static('public'));
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
 app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
+app.use(cors()) // add a cors header to the backend so the react app can access it from another domain or port.
 app.use('/notes',notesController) //access to notes controller, also add a prepend "notes" to the URL
 app.use('/users', usersController)//access to users controller, also add a prepend "users" to the URL
-app.use(cors()) // add a cors header to the backend so the react app can access it from another domain or port.
+
 
 //___________________
 // Routes
