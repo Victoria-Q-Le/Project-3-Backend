@@ -14,4 +14,10 @@ router.get('/', (req,res) => {
   })
 })
 
+router.delete('/:id', (req,res) => {
+  Notes.findByIdAndRemove(req.params.id, (err,deletedNote) => {
+    res.json(deletedNote)
+  })
+})
+
 module.exports = router
