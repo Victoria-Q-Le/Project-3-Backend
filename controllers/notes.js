@@ -20,4 +20,10 @@ router.delete('/:id', (req,res) => {
   })
 })
 
+router.put('/:id', (req,res) => {
+  Notes.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedNote) => {
+    res.json(updatedNote)
+  })
+})
+
 module.exports = router

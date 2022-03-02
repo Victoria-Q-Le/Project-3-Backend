@@ -7,6 +7,7 @@ const app = express ();
 const db = mongoose.connection;
 require('dotenv').config()
 const notesController = require ('./controllers/notes.js')
+const cors = require('cors')
 //___________________
 //Port
 //___________________
@@ -39,8 +40,8 @@ app.use(express.static('public'));
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
 app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
-app.use('/notes',notesController)
-
+app.use('/notes',notesController) //access to note controllers, also add a prepend "notes" to the URL
+app.use(cors()) // add a cors header to the backend so the react app can access it from another domain or port. 
 
 //___________________
 // Routes
