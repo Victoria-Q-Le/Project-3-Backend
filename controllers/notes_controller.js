@@ -8,6 +8,12 @@ notes.post('/', (req,res) => {
   })
 })
 
+notes.get('/:id', (req,res) => {
+  Notes.findById(req,params.id, (err, foundNote) => {
+    res.json(foundNote)
+  })
+})
+
 notes.get('/', (req,res) => {
   Notes.find({}, (err, foundNotes) => {
     res.json(foundNotes)
