@@ -14,6 +14,12 @@ notes.get('/', (req,res) => {
   })
 })
 
+notes.get('/:id', (req,res) => {
+  Notes.findById(req.params.id, (err, foundNote) => {
+    res.json(foundNote)
+  })
+})
+
 notes.delete('/:id', (req,res) => {
   Notes.findByIdAndRemove(req.params.id, (err,deletedNote) => {
     res.json(deletedNote)
